@@ -11,7 +11,7 @@ NO contiene logica de negocio, sigue el principio SRP (Single Responsability)
 requiere('dotenv').config(); //cargamos las variables definidas en el archivo .env para acceder a ellas luego
 
 const createApp = require('./app'); //traemos la funcion de App. Fabrica la app Express (sin arrancar).
-const conectToDatabase = require('./database'); // Módulo responsable de la conexión a la DB.
+const db = require('./database'); // Módulo responsable de la conexión a la DB.
 const { logInfo, logError } = require('./logger'); //utilizamos destructuring para traer solo las funciones necesarias de logger (en este caso logINfo y LogError)
 
 //configuramos el puerto con ENV que cargamos, con fallback (en caso de error toma el puerto 3000)
@@ -22,7 +22,7 @@ async function startServer(){
         //cada logInfo seria un log de informacion que estariamos guardando
         logInfo('bootstrapping: iniciando la conexion a la base de datos');
         //nos conectamos a la base de datos
-        await connectToDatabase(Process.env.MONGO_URI);
+        await db.connectToDatabase();
 
         logInfo('Inicializando la aplicacion Express...');
         const app = createApp(); // creamos la app ya configurada (middlewares, rutas, manejador de errores.)
@@ -38,7 +38,7 @@ async function startServer(){
                 server.close(() => logInfo('Servidor Cerrado.'));
 
                 //exportamos el db close y lo usamos para cerrar la conexion a la db
-                await requiere('./database').close();
+                await db.closeDatabaseConnection();
                 logInfo('Conexcion a DB cerrada');
                 process.exit(0);
             } catch (error) {
