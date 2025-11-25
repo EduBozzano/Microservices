@@ -10,7 +10,7 @@
 const express = require('express');
 const morgan = require('morgan'); //morgan es un logger para las request, registra todas las peticiones que entran al servidor
 const helmet = require('helmet'); //seguridad basica
-const authRouters = require('routes'); //las rutas del dominio auth
+const authRouters = require('auth.routes'); //las rutas del dominio auth
 
 //creamos una funcion para crear la App con sus configuraciones
 function createApp(){
