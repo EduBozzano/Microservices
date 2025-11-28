@@ -70,7 +70,7 @@ async function login(request, respuesta) {
 }
 
 //implementamos el handler refresh
-async function refresh(request, respuesta) {
+async function refreshToken(request, respuesta) {
     try {
         const { refreshToken } = request.body;
 
