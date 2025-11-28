@@ -6,8 +6,8 @@
 
 'use strict';
 
-const mongoose = requiere('mongoose'); //importamos mongoose que maneja la conexion con la db
-const { logInfo, logError } = requiere('../utils/logger'); //importamos los loggers que usaremos
+const mongoose = require('mongoose'); //importamos mongoose que maneja la conexion con la db
+const { logInfo, logError } = require('./logger'); //importamos los loggers que usaremos
 
 /**
  * Conecta a la base de datos MongoDB usando mongoose.

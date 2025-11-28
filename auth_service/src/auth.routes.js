@@ -4,16 +4,16 @@
  * Responsabilidad: manejar post, get y errores
  */
 
-const express = requiere('express'); 
+const express = require('express'); 
 const router = express.Router(); //permite modularizar rutas, separando la lógica de endpoints del index.js.
-const authController = require('../auth.controller');
-const authMiddleware = require('../auth.middleware'); //para proteger rutas
+const authController = require('./auth.controller');
+const authMiddleware = require('./auth.middleware'); //para proteger rutas
 
 //Definir rutas
 router.post('/register', authController.register);
 router.post('/login', authController.login);
-router.post('/refresh', authController.refresh);
-router.get('/me', authMiddleware, authController.getUserprofile);
+router.post('/refresh', authController.refreshToken);
+router.get('/me', authMiddleware, authController.getUserProfile);
 
 //exportamos el router
 module.exports = router;

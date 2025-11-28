@@ -13,7 +13,7 @@
  * - Low Coupling: no depende del controlador ni de Express
  */
 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const User = require('./user.model');
 const { logInfo, logError } = require('./logger');
 const jwt = require('jsonwebtoken'); //importamos jwt para los tokens
