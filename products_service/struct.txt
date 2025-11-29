@@ -1,0 +1,20 @@
+/products-service
+│
+├── app.js
+├── index.js
+├── database.js
+│
+├── products
+│   ├── products.model.js
+│   ├── products.controller.js
+│   ├── products.routes.js
+│   ├── products.service.js
+│
+├── middleware
+│   └── auth.middleware.js   (solo si querés proteger rutas luego)
+│
+├── utils
+│   ├── logger.js
+│   └── errors.js
+│
+└── .env

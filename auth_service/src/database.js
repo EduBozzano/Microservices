@@ -22,7 +22,8 @@ async function connectToDatabase() {
     
     try {
         const conn = await mongoose.connect(uri);
-        logInfo('Base de datos conectada: ${conn.connection.host}')
+        //logInfo('Base de datos conectada: ${conn.connection.host}')
+        logInfo('Base de datos conectada:' + conn.connection.host);
         return conn;
     } catch (error) {
         logError("Error al conectar a la base de datos:", error);

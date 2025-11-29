@@ -1,5 +1,5 @@
 /**
- * src/logger.js
+ * utils/logger.js
  * Logger minimalista y reemplazable
  * 
  * Diseno:
