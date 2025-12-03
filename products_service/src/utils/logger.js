@@ -103,7 +103,7 @@ function logWarn(message, meta = {}){
  */
 function logError(message, meta = {}){
     //si meta es un error, convertimos correctamente
-    if (META instanceof Error){
+    if (meta instanceof Error){
         meta = {
             error_message: meta.message,
             error_stack: meta.stack

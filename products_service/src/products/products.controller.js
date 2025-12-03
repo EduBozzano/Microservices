@@ -5,8 +5,8 @@
 
 'use strict';
 
-const productService = require('products.service');
-const { logInfo, logError } = require('./utils/logger');
+const productService = require('./products.service');
+const { logInfo, logError } = require('../utils/logger');
 
 /*
  * Crear un nuevo producto

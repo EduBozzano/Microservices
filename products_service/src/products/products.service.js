@@ -6,7 +6,7 @@
 'use strict';
 
 const Product = require('./products.model');
-const { logInfo, logError } = require('./utils/logger');
+const { logInfo, logError } = require('../utils/logger');
 
 //Crea un producto
 async function createProduct(data) {

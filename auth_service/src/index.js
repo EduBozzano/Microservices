@@ -53,7 +53,9 @@ async function startServer(){
 
         //capturamos errores no manejados //reason lo genera automaticamente node
         process.on('unhandledRejection', (reason) => {logError('Unhandled Rejection - motivo:', reason)})
+        //unhandled para las promesas
 
+        //uncaught para excepciones no manejadas
         process.on('uncaughtException', (error) => {
             logError('UncaughtException - error critico:', error);
             process.exit(1) //(en produccion se suele reiniciar)
