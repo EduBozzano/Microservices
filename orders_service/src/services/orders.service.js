@@ -44,7 +44,7 @@ async function createOrder(token, items) {
     throw new Error('Order items required');
   }
 
-  // 3) Consultar cada producto al Products Service
+  // 3) Consultar cada producto al Products Service y calculamos el total
   let total = 0;
   const enrichedItems = [];
 
@@ -76,7 +76,7 @@ async function createOrder(token, items) {
   for (const it of enrichedItems) {
     await OrderItem.create({
       orderId: order.id,
-      ...it
+      ...it //...it lo que hace es copiar todos los atributos del elemento seleccionado
     });
   }
 
@@ -88,3 +88,31 @@ async function createOrder(token, items) {
     items: enrichedItems
   };
 }
+
+//Obtener una orden por ID
+async function getOrderById(orderId) {
+  const order = await Order.findByPk(orderId, {
+    include: ['items']
+  });
+
+  if (!order) {
+    throw new Error('Order not found');
+  }
+
+  return order;
+}
+
+//Listas u obtener ordenes de un usuario
+async function getUserOrders(userId) {
+  return Order.findAll({
+    where: { userId },
+    include: ['items'],
+    order: [['createdAt', 'DESC']]
+  });
+}
+
+module.exports = {
+  createOrder,
+  getOrderById,
+  getUserOrders
+};

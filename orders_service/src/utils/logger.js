@@ -107,7 +107,7 @@ function logError(message, meta = {}){
     if (meta instanceof Error){
         meta = {
             error_message: meta.message,
-            error_stack: meta.stack
+            //error_stack: meta.stack //si queremos mas informacion podemos imprimir el stack
         };
     }
     //siempre se intenta loguear los errores, ignorando el LEVEL si es necesario.
