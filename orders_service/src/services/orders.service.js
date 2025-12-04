@@ -36,15 +36,15 @@ async function fetchProduct(productId) {
 
 //FUNCION PRINCIPAL: Crea las ordenes
 async function createOrder(token, items) {
-  // 1) Validar token
+  // Validar token
   const user = await verifyToken(token);
 
-  // 2) Validar items de entrada
+  // Validar items de entrada
   if (!Array.isArray(items) || items.length === 0) {
     throw new Error('Order items required');
   }
 
-  // 3) Consultar cada producto al Products Service y calculamos el total
+  // Consultar cada producto al Products Service y calculamos el total
   let total = 0;
   const enrichedItems = [];
 
@@ -65,14 +65,14 @@ async function createOrder(token, items) {
     });
   }
 
-  // 4) Crear la orden en la BD
+  // Crear la orden en la BD
   const order = await Order.create({
     userId: user.userId,
     total,
     status: 'pending'
   });
 
-  // 5) Crear los items relacionados
+  // Crear los items relacionados
   for (const it of enrichedItems) {
     await OrderItem.create({
       orderId: order.id,
@@ -103,7 +103,11 @@ async function getOrderById(orderId) {
 }
 
 //Listas u obtener ordenes de un usuario
-async function getUserOrders(userId) {
+async function getUserOrders(token) {
+  // Validar token
+  const user = await verifyToken(token);
+  const userId = user.userId;
+
   return Order.findAll({
     where: { userId },
     include: ['items'],
