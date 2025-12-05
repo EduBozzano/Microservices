@@ -1,8 +1,13 @@
 // src/config/database.js
 'use strict';
 
-const { Sequelize } = require('sequelize');
-const { logInfo, logError } = require('../utils/logger'); // ajustá la ruta si tu logger está en otro lugar
+// import { createRequire } from 'node:module';
+// const require = createRequire(import.meta.url);
+
+// const { Sequelize } = require('sequelize');
+// const { logInfo, logError } = require('../utils/logger');
+import Sequelize from 'sequelize';
+import { logInfo, logError } from '../utils/logger.js'
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -44,8 +49,13 @@ async function closeDatabase() {
   }
 }
 
-module.exports = {
+// module.exports = {
+//   sequelize,
+//   connectToDatabase,
+//   closeDatabase
+// };
+export{
   sequelize,
   connectToDatabase,
-  closeDatabase
-};
+  closeDatabase  
+}

@@ -1,7 +1,13 @@
 'use strict';
 
-const Order = require('./order.model');
-const OrderItem = require('./orderItem.model');
+// import { createRequire } from 'node:module';
+// const require = createRequire(import.meta.url);
+
+// const Order = require('./order.model');
+// const OrderItem = require('./orderItem.model');
+
+import {Order} from './order.model.js'
+import {OrderItem} from './orderItem.model.js'
 
 // 1 Orden → N Items
 Order.hasMany(OrderItem, {
@@ -14,7 +20,11 @@ OrderItem.belongsTo(Order, {
   as: 'order'
 });
 
-module.exports = {
+// module.exports = {
+//   Order,
+//   OrderItem
+// };
+export{
   Order,
-  OrderItem
-};
+  OrderItem,
+}

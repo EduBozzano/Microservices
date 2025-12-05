@@ -4,13 +4,14 @@
  */
 
 // orders.controller.js
-import OrdersService from '../services/orders.service.js';
+// import OrdersService from '../services/orders.service.js';
+import { createOrder, getUserOrders } from '../services/orders.service.js';
 
 //creamos una clase que va a mentener los metodos de crear y obtener ordenes, y entonces la exportamos
 export default class OrdersController {
-  constructor() {
-    this.ordersService = new OrdersService();
-  }
+  // constructor() {
+  //   this.ordersService = new OrdersService();
+  // }
 
   // Crear una nueva orden     //En clases, los métodos suelen ser flecha porque así no se pierde el this cuando esos métodos se pasan como callbacks.
   createOrder = async (req, res) => {
@@ -31,7 +32,8 @@ export default class OrdersController {
 
       const userId = req.user.userId //esto lo trae el middleware
       // Llamar al servicio createOrder de orders.service
-      const newOrder = await this.ordersService.createOrder(userId, items);
+      // const newOrder = await this.ordersService.createOrder(userId, items);
+      const newOrder = await createOrder(userId, items);
 
       // Respuesta
       return res.status(201).json({
@@ -54,7 +56,8 @@ export default class OrdersController {
 
       // const token = authHeader.split(' ')[1];
       const userId = req.user.userId
-      const orders = await this.ordersService.getUserOrders(userId);
+      // const orders = await this.ordersService.getUserOrders(userId);
+      const orders = await getUserOrders(userId);
 
       return res.status(200).json(orders);
     } catch (error) {

@@ -4,9 +4,13 @@
  */
 
 'use strict';
+// import { createRequire } from 'node:module';
+// const require = createRequire(import.meta.url);
 
-const { DataTypes } = require('sequelize');
-const { sequelize } = require('../config/database');
+// const { DataTypes } = require('sequelize');
+// const { sequelize } = require('../config/database');
+import { DataTypes } from "sequelize";
+import { sequelize } from "../config/database.js";
 
 const OrderItem = sequelize.define('OrderItem', {
   id: {
@@ -40,4 +44,7 @@ const OrderItem = sequelize.define('OrderItem', {
   timestamps: false
 });
 
-module.exports = OrderItem;
+//module.exports = OrderItem;
+export{
+  OrderItem
+}

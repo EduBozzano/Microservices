@@ -1,10 +1,18 @@
 'use strict';
 
-const axios = require('axios');
-const jwt = require('jsonwebtoken');
+// import { createRequire } from 'node:module';
+// const require = createRequire(import.meta.url);
 
-const { Order, OrderItem } = require('./relations');
-const { logInfo, logError } = require('../utils/logger');
+// const axios = require('axios');
+// const jwt = require('jsonwebtoken');
+
+// const { Order, OrderItem } = require('../models/relations');
+// const { logInfo, logError } = require('../utils/logger');
+import axios from 'axios'
+import jwt from 'jsonwebtoken'
+
+import {Order, OrderItem} from '../models/relations.js'
+import {logInfo, logError } from '../utils/logger.js'
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -73,7 +81,7 @@ async function createOrder(userId, items) {
 
   // Crear la orden en la BD
   const order = await Order.create({
-    userId: user.userId,
+    userId: userId,
     total,
     status: 'pending'
   });
@@ -121,7 +129,13 @@ async function getUserOrders(userId) {
   });
 }
 
-module.exports = {
+// module.exports = {
+//   createOrder,
+//   getOrderById,
+//   getUserOrders
+// };
+export {
+  verifyToken,
   createOrder,
   getOrderById,
   getUserOrders

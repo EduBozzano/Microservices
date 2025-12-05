@@ -118,16 +118,22 @@ function logError(message, meta = {}){
 /**
  * Exports: API pequeña para que el resto del codigo la use
  */
-module.exports = {
+// module.exports = {
+//     logDebug,
+//     logInfo,
+//     logWarn,
+//     logError,
+//     // se exporta para testing y por si otros modulos necesitan inspeccionar
+//     _internarls:{
+//         buildLogEntry,
+//         getTimestampIso,
+//         LEVELS,
+//         currentLevelValue,
+//     }
+// }; 
+export{
     logDebug,
     logInfo,
     logWarn,
     logError,
-    // se exporta para testing y por si otros modulos necesitan inspeccionar
-    _internarls:{
-        buildLogEntry,
-        getTimestampIso,
-        LEVELS,
-        currentLevelValue,
-    }
-}; 
+};

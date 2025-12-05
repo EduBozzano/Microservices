@@ -2,8 +2,8 @@ import express from 'express';
 import cors from 'cors';
 
 // Routers
-import productsRouter from '../products/products.router.js';
-import ordersRouter from './orders/orders.router.js';
+//import productsRouter from '../products/products.router.js';
+import ordersRouter from './orders/orders.routers.js';
 
 const app = express();
 
@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 // Routers
-app.use('/products', productsRouter);
+//app.use('/products', productsRouter);
 app.use('/orders', ordersRouter);
 
 // Manejo básico de errores de forma centralizada

@@ -4,9 +4,13 @@
  */
 
 'use strict';
+// import { createRequire } from 'node:module';
+// const require = createRequire(import.meta.url);
 
-const { DataTypes } = require('sequelize');
-const { sequelize } = require('../config/database');
+// const { DataTypes } = require('sequelize');
+// const { sequelize } = require('../config/database');
+import { DataTypes } from 'sequelize';
+import { sequelize } from '../config/database.js';
 
 const Order = sequelize.define('Order', {
   id: {
@@ -35,4 +39,7 @@ const Order = sequelize.define('Order', {
   timestamps: true, // createdAt y updatedAt
 });
 
-module.exports = Order;
+// module.exports = Order;
+export{
+  Order
+}
