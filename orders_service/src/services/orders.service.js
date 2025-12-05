@@ -6,16 +6,19 @@ const jwt = require('jsonwebtoken');
 const { Order, OrderItem } = require('./relations');
 const { logInfo, logError } = require('../utils/logger');
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 // URL del Products Service (leyendo ENV)
 const PRODUCTS_SERVICE_URL = process.env.PRODUCTS_SERVICE_URL;
 
 // Clave para verificar JWT
-const JWT_PUBLIC_KEY = process.env.JWT_PUBLIC_KEY;
+const JWT_ACCESS_SECRET = process.env.JWT_ACCESS_SECRET;
 
 //Funcion para validar token
 async function verifyToken(token) {
   try {
-    const payload = jwt.verify(token, JWT_PUBLIC_KEY);
+    const payload = jwt.verify(token, JWT_ACCESS_SECRET);
     return payload; // contiene userId, asi podemos asociar la orden
   } catch (error) {
     logError('Token inválido al crear orden', { error: error.message });
@@ -35,9 +38,12 @@ async function fetchProduct(productId) {
 }
 
 //FUNCION PRINCIPAL: Crea las ordenes
-async function createOrder(token, items) {
-  // Validar token
-  const user = await verifyToken(token);
+async function createOrder(userId, items) {
+  // // Validar token
+  // const user = await verifyToken(token);
+  if (!userId) {
+    throw new Error('userId requerido para crear orden');
+  }
 
   // Validar items de entrada
   if (!Array.isArray(items) || items.length === 0) {
@@ -103,10 +109,10 @@ async function getOrderById(orderId) {
 }
 
 //Listas u obtener ordenes de un usuario
-async function getUserOrders(token) {
-  // Validar token
-  const user = await verifyToken(token);
-  const userId = user.userId;
+async function getUserOrders(userId) {
+  // // Validar token
+  // const user = await verifyToken(token);
+  // const userId = user.userId;
 
   return Order.findAll({
     where: { userId },

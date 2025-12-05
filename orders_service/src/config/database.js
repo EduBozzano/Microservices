@@ -4,6 +4,9 @@
 const { Sequelize } = require('sequelize');
 const { logInfo, logError } = require('../utils/logger'); // ajustá la ruta si tu logger está en otro lugar
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 // instanciamos Sequelize (no correr aún)
 const sequelize = new Sequelize(process.env.MYSQL_DATABASE, process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, {
   host: process.env.MYSQL_HOST || 'localhost',

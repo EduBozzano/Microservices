@@ -15,13 +15,13 @@ export default class OrdersController {
   // Crear una nueva orden     //En clases, los métodos suelen ser flecha porque así no se pierde el this cuando esos métodos se pasan como callbacks.
   createOrder = async (req, res) => {
     try {
-      // Obtener token del encabezado
-      const authHeader = req.headers.authorization;
-      if (!authHeader) {
-        return res.status(401).json({ message: 'Token no enviado' });
-      }
+      // // Obtener token del encabezado
+      // const authHeader = req.headers.authorization;
+      // if (!authHeader) {
+      //   return res.status(401).json({ message: 'Token no enviado' });
+      // }
 
-      const token = authHeader.split(' ')[1]; // "Bearer xxx"
+      //const token = authHeader.split(' ')[1]; // "Bearer xxx"
 
       // Validar body: items debe existir y ser array
       const { items } = req.body;
@@ -29,8 +29,9 @@ export default class OrdersController {
         return res.status(400).json({ message: 'items debe ser un array con elementos' });
       }
 
+      const userId = req.user.userId //esto lo trae el middleware
       // Llamar al servicio createOrder de orders.service
-      const newOrder = await this.ordersService.createOrder(token, items);
+      const newOrder = await this.ordersService.createOrder(userId, items);
 
       // Respuesta
       return res.status(201).json({
@@ -46,14 +47,14 @@ export default class OrdersController {
   // Obtener órdenes del usuario autenticado
   getMyOrders = async (req, res) => {
     try {
-      const authHeader = req.headers.authorization;
-      if (!authHeader) {
-        return res.status(401).json({ message: 'Token no enviado' });
-      }
+      // const authHeader = req.headers.authorization;
+      // if (!authHeader) {
+      //   return res.status(401).json({ message: 'Token no enviado' });
+      // }
 
-      const token = authHeader.split(' ')[1];
-
-      const orders = await this.ordersService.getUserOrders(token);
+      // const token = authHeader.split(' ')[1];
+      const userId = req.user.userId
+      const orders = await this.ordersService.getUserOrders(userId);
 
       return res.status(200).json(orders);
     } catch (error) {
