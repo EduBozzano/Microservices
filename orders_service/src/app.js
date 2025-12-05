@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 
 // Routers
-import productsRouter from './products/products.router.js';
+import productsRouter from '../products/products.router.js';
 import ordersRouter from './orders/orders.router.js';
 
 const app = express();

@@ -1,2 +1,2 @@
 npm init -y
-npm i express sequelize mysql2 jsonwebtoken dotenv
+npm i express sequelize mysql2 jsonwebtoken dotenv cors
