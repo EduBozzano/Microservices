@@ -186,3 +186,9 @@ async function getUserProfile(userId) {
     };
 }
 
+module.exports = {
+    register,
+    login,
+    refreshToken,
+    getUserProfile,
+};
