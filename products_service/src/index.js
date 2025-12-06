@@ -27,7 +27,7 @@ async function startServer(){
         const app = createApp(); // creamos la app ya configurada (middlewares, rutas, manejador de errores.)
 
         //cuando la db este lista arrancamos el servidor
-        const server = app.listen(PORT, () => {logInfo('Auth Service escuchando en puerto ${PORT}')});
+        const server = app.listen(PORT, () => {logInfo('Auth Service escuchando en puerto:'+ PORT)});
 
         //manejo graceful del shutdown
         const gracefulShutdown = async  (signal) => {

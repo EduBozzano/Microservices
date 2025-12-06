@@ -18,7 +18,7 @@ function createApp(){
 
     //configuramos los middlewares
     //seguridad HTTP headers (utiliza encabezados de seguridad para las respuestas, haciendolas mas seguras y protegiendola de vulnerabilidades)
-    app.use(hetmet());
+    app.use(helmet());
 
     //Parseamos el JSON entrante y limitamos el tamano por seguridad 
     app.use(express.json({ limit: '10kb'}));
