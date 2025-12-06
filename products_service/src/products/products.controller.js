@@ -13,7 +13,7 @@ const { logInfo, logError } = require('../utils/logger');
  */
 async function createProduct(request, respuesta) {
     try {
-        const { name, price, description } = request.body;
+        const { name, price, description, stock, category } = request.body;
 
         //validacion minima
         if (!name || !price) {
@@ -24,6 +24,8 @@ async function createProduct(request, respuesta) {
             name,
             price,
             description,
+            stock,
+            category
         });
 
         logInfo("Producto creado", { id: product._id });
@@ -54,6 +56,7 @@ async function getAllProducts(request, respuesta) {
  */
 async function getProductById(request, respuesta) {
     try {
+
         const {id} = request.params;
 
         const product = await productService.getProductById(id);

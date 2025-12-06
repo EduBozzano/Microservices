@@ -39,7 +39,7 @@ async function getAllProducts() {
 //obtenemos un producto por ID
 async function getProductById(id) {
     try {
-        return await Product.find({id});
+        return await Product.findById(id);
     } catch (error) {
         logError('Error al buscar producto por ID', {id, error: error.message });
         throw error;
