@@ -63,6 +63,7 @@ async function createOrder(userId, items) {
   const enrichedItems = [];
 
   for (const item of items) {
+    console.log(item);
     const product = await fetchProduct(item.productId);
 
     if (item.quantity <= 0) {

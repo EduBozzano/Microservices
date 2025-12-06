@@ -30,7 +30,7 @@ export default class OrdersController {
         return res.status(400).json({ message: 'items debe ser un array con elementos' });
       }
 
-      const userId = req.user.userId //esto lo trae el middleware
+      const userId = req.user.id //esto lo trae el middleware
       // Llamar al servicio createOrder de orders.service
       // const newOrder = await this.ordersService.createOrder(userId, items);
       const newOrder = await createOrder(userId, items);
@@ -55,7 +55,7 @@ export default class OrdersController {
       // }
 
       // const token = authHeader.split(' ')[1];
-      const userId = req.user.userId
+      const userId = req.user.id
       // const orders = await this.ordersService.getUserOrders(userId);
       const orders = await getUserOrders(userId);
 

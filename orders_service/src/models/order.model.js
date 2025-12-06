@@ -20,7 +20,7 @@ const Order = sequelize.define('Order', {
   },
 
   userId: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.CHAR(24),
     allowNull: false,
   },
 
