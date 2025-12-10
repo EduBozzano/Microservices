@@ -13,6 +13,7 @@ import jwt from 'jsonwebtoken'
 
 import {Order, OrderItem} from '../models/relations.js'
 import {logInfo, logError } from '../utils/logger.js'
+import { CircuitBreaker } from '../utils/cicuitBreaker.js';
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -53,7 +54,7 @@ async function fetchProduct(productId) {
 
   // Llamada via circuit breaker (fail-fast si OPEN)
   try {
-    return await productsBreaker.call(fn, options);
+    return await CircuitBreaker.call(fn, options);
   } catch (err) {
     // manejar error localmente, por ejemplo lanzar error con mensaje claro
     throw new Error(`No se pudo obtener el producto ${productId}: ${err.message}`);

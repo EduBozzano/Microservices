@@ -1,7 +1,8 @@
 // src/utils/circuitBreaker.js
 'use strict';
 
-const { retryAsync } = require('./retry');
+// const { retryAsync } = require('./retry');
+import { retryAsync } from './retry.js';
 
 class CircuitBreaker {
   constructor(options = {}) {
@@ -74,4 +75,5 @@ class CircuitBreaker {
   }
 }
 
-module.exports = CircuitBreaker;
+// module.exports = CircuitBreaker;
+export { CircuitBreaker };

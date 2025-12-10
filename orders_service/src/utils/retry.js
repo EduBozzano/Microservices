@@ -50,4 +50,5 @@ async function retryAsync(fn, options = {}) {
   }
 }
 
-module.exports = { retryAsync };
+// module.exports = { retryAsync };
+export { retryAsync };
