@@ -45,7 +45,7 @@ class CircuitBreaker {
    * options permite pasar retry options si querés usar retry internamente.
    */
   async call(fn, options = {}) {
-    // si está abierto y no llegó el cooldown -> fail fast
+    // si está abierto y no llegó el cooldown 
     if (this.state === 'OPEN') {
       if (Date.now() < this.nextAttempt) {
         const err = new Error('Circuit breaker is OPEN');
