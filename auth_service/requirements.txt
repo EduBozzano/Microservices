@@ -1,1 +1,1 @@
-npm install express mongoose dotenv bcryptjs jsonwebtoken axios helmet
+npm install express mongoose dotenv bcryptjs jsonwebtoken axios helmet morgan
