@@ -35,15 +35,31 @@ async function verifyToken(token) {
 }
 
 //funcion para consultar productos a products_service
+// async function fetchProduct(productId) {
+//   try {
+//     const response = await axios.get(`${PRODUCTS_SERVICE_URL}/${productId}`);
+//     return response.data;
+//   } catch (error) {
+//     logError('Error consultando producto', { productId, error: error.message });
+//     throw new Error(`Product not found: ${productId}`);
+//   }
+// }
 async function fetchProduct(productId) {
+  //definimos la funcion para nuestra peticion en una constante fn
+  const fn = async () => {
+    const res = await axios.get(`${process.env.PRODUCTS_SERVICE_URL}/${productId}`, { timeout: 3000 });
+    return res.data;
+  };
+
+  // Llamada via circuit breaker (fail-fast si OPEN)
   try {
-    const response = await axios.get(`${PRODUCTS_SERVICE_URL}/${productId}`);
-    return response.data;
-  } catch (error) {
-    logError('Error consultando producto', { productId, error: error.message });
-    throw new Error(`Product not found: ${productId}`);
+    return await productsBreaker.call(fn, options);
+  } catch (err) {
+    // manejar error localmente, por ejemplo lanzar error con mensaje claro
+    throw new Error(`No se pudo obtener el producto ${productId}: ${err.message}`);
   }
 }
+
 
 //FUNCION PRINCIPAL: Crea las ordenes
 async function createOrder(userId, items) {
